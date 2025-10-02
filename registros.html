@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registros de Clientes - Estúdio Bela Flor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo Estúdio Bela Flor" class="logo">
+        <h1>Registros de Clientes</h1>
+        <table id="tabelaRegistros">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+
+                    <th>E-mail</th>
+
+                    <th>Telefone</th>
+
+                    <th>Data</th>
+
+                    <th>Hora</th>
+
+                    <th>Serviço</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os registros serão inseridos aqui via JavaScript -->
+            </tbody>
+        </table>
+        <a href="Cadastros.html">Voltar ao cadastro</a>
+    </div>
+    <script>
+        function carregarRegistros() {
+            let registros = JSON.parse(localStorage.getItem('registros')) || [];
+            const tbody = document.querySelector('#tabelaRegistros tbody');
+            tbody.innerHTML = '';
+            registros.forEach(registro => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${registro.nome}</td>
+                    <td>${registro.email}</td>
+                    <td>${registro.telefone}</td>
+                    <td>${registro.data}</td>
+                    <td>${registro.hora}</td>
+                    <td>${registro.servico}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+        window.onload = carregarRegistros;
+    </script>
+</body>
+
+</html>
